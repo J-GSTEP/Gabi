@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gabi Sample Web Chat</title> 
+  <title>Contoso Sample Web Chat</title> 
 <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
 <script type="text/javascript" src="https://alcdn.msauth.net/lib/1.2.0/js/msal.js"></script>
 <script src="https://unpkg.com/@azure/storage-blob@10.3.0/browser/azure-storage.blob.min.js"
@@ -95,7 +95,7 @@
 <body onload="onSignInClick()">
 <div id="chatwindow">
   <div id="heading">
-    <div><span>Gabi - Agente</span></div>
+    <div><span>SSO Test Bot</span></div>
   </div>
   <div style="z-index: 100;position: absolute;margin-top: 50px;width: 100%;">
   <div>
@@ -179,7 +179,7 @@ async function fetchJSON(url, bearer_token, options = {}) {
     (function (){
       var msalConfig = {
         auth: {
-          clientId: 'a4ae452a-b057-4e29-8536-799da716bc97',
+          clientId: 'd4e71ecb-c5fa-4b38-8e4b-97091aae0b5f',
           authority: 'https://login.microsoftonline.com/acf50ce1-e1d9-4be3-9e6b-227af56acdaa'
         },
         cache: {
@@ -202,6 +202,7 @@ async function fetchJSON(url, bearer_token, options = {}) {
     }
 
     // Add your BOT ID below 
+    // var theURL = "https://b1c225f029a1efe1810c05275f8d11.4a.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr88a_loginBot/directline/token?api-version=2022-03-01-preview"; // you can find the token URL via the mobile app channel configuration
     var theURL = "https://europe.directline.botframework.com/v3/directline/tokens/generate";
     var bearer_token = '9zeczG2l14feTfAXPVfhbEo2tRUNeGHpEJrXG0reEURujSPAOX4uJQQJ99BCACi5YpzAArohAAABAZBSyeOJ.DFIztNC8EG0595lcxrLFa6OR91Eu92rH4OiSPKGReJtm61ZvIAqfJQQJ99BCACi5YpzAArohAAABAZBSNYOf';
 	  var userdeails = clientApplication.getAccount();
@@ -209,9 +210,11 @@ async function fetchJSON(url, bearer_token, options = {}) {
       ("You-customized-prefix" + clientApplication.account.accountIdentifier).substr(0, 64) :
       (Math.random().toString() + Date.now().toString()).substr(0, 64);
 
-    const { token } = await fetchJSON(theURL, bearer_token); 
+    //const { token } = await fetchJSON(theURL, bearer_token); ///////userdeails.idToken);  
+    const { token } = await fetchJSON(theURL, bearer_token); ///////userdeails.idToken);  
     console.log("Direct Line Token:", token); // Log the token for debugging
 
+    console.log("TESTING A LINE"); // Log the token for debugging
     const directLine = window.WebChat.createDirectLine({ token: token, domain: 'https://europe.directline.botframework.com/v3/directline' });
     console.log("Direct Line:", directLine);
 	  
